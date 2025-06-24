@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/bookings", {
+      const response = await fetch("https://carwash-backhend-xf69.onrender.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
