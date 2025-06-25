@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch("https://www.prowash.it./api/bookings", {
+      const response = await fetch("https://carwash-site-9.onrender.com/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
