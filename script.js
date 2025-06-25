@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(data),
       });
 
+      console.log("Raw response:", response);
+      
       const result = await response.json();
 
       if (response.ok) {
