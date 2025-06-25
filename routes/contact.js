@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     });
 
     const saved = await newMessage.save();
-    res.status(201).json(saved);
+    res.status(201).json({ message: "Message sent successfully!"});
   } catch (err) {
     console.error("Error saving contact message:", err);
     res.status(500).json({ error: 'Failed to send message.' });
