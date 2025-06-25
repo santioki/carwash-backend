@@ -25,7 +25,7 @@
   <script>
     async function loadDashboardData() {
       try {
-        const bookingsRes = await fetch('/api/admin/bookings'); 
+        const bookingsRes = await fetch('https://carwash-backend-1-2urg.onrender.com/api/admin/bookings'); 
 
         const bookings = await bookingsRes.json();
 
@@ -36,7 +36,7 @@
           </div>
         `).join('');
 
-        const contactsRes = await fetch('/api/admin/contacts'); 
+        const contactsRes = await fetch('https://carwash-backend-1-2urg.onrender.com/api/admin/contacts'); 
 
         const contacts = await contactsRes.json();
 
