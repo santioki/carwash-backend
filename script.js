@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch("https://carwash-backend-xf69.onrender.com/api/bookings", {
+      const response = await fetch("https://carwash-site.onrender.com/api/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
