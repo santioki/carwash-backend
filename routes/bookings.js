@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
 
     const savedBooking = await newBooking.save();
     console.log("Booking saved:", savedBooking);  // ✅ Show confirmation in terminal
-    res.status(201).json(savedBooking);
+    res.status(200).json({ message: "Booking submitted successfully" });
   } catch (error) {
     console.error("Error saving booking:", error);  // ✅ Helpful error log
     res.status(500).json({ error: "Booking could not be saved." });
