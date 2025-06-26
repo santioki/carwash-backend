@@ -91,4 +91,25 @@ async function loadDashboardData() {
     alert("Error loading dashboard.");
   }
 }
+async function deleteBooking(id) {
+  if (!confirm("Are you sure you want to delete this booking?")) return;
+
+  try {
+    const res = await fetch(`https://carwash-backend-1-2urg.onrender.com/api/admin/bookings/${id}`, {
+      method: "DELETE"
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+      alert("Booking deleted successfully.");
+      location.reload(); // reloads the page to reflect changes
+    } else {
+      alert("Failed to delete booking: " + result.error);
+    }
+  } catch (err) {
+    console.error("Delete error:", err);
+    alert("An error occurred while deleting booking.");
+  }
+}
 
