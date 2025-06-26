@@ -13,8 +13,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 const corsOptions = {
-  origin: ["https://www.prowash.it.com", "https://carwash-frontend-xf69.onrender.com"],
-  methods: ["POST"] 
+  origin: ["https://www.prowash.it.com"],
+  methods: ["POST", "POST", "DELETE", "PUT", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
 };
 
 app.use(cors(corsOptions));
