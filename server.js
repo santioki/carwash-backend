@@ -11,17 +11,25 @@ const adminRoute = require('./routes/admin');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// CORS setup
 const corsOptions = {
-  origin: ["https://www.prowash.it.com", "https://carwash-frontend-xf69.onrender.com"],
-  methods: ["POST"]
+  origin: [
+    "https://www.prowash.it.com",
+    "https://carwash-frontend-xf69.onrender.com"
+  ],
+  methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 };
 
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
 
+// Middleware
 app.use(express.json());
 
+// API Routes
 app.use('/api/bookings', bookingsRoute);
 app.use('/api/contact', contactRoute);
 app.use('/api/admin', adminRoute);
@@ -39,3 +47,4 @@ mongoose.connect(process.env.MONGO_URI, {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
