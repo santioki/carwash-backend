@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch bookings
-    const bookingsRes = await fetch("/api/admin/bookings");
+    const bookingsRes = await fetch("https://carwash-backend-1-2urg.onrender.com/api/admin/bookings");
     const bookings = await bookingsRes.json();
 
     const bookingsContainer = document.getElementById("bookings-list");
@@ -54,23 +54,41 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 // Delete a booking
-async function deleteBooking(id) {
-  const confirmDelete = confirm("Are you sure you want to delete this booking?");
-  if (!confirmDelete) return;
-
+async function loadDashboardData() {
   try {
-    const res = await fetch(`/api/admin/bookings/${id}`, {
-      method: "DELETE",
-    });
+    // Fetch bookings
+    const bookingsRes = await fetch('https://carwash-backend-1-2urg.onrender.com/api/admin/bookings');
+    const bookings = await bookingsRes.json();
 
-    if (res.ok) {
-      alert("Booking deleted.");
-      location.reload(); // reload to reflect change
-    } else {
-      alert("Failed to delete booking.");
-    }
+    const bookingsDiv = document.getElementById('bookings-list');
+    bookingsDiv.innerHTML = `
+      <table border="1">
+        <tr>
+          <th>Full Name</th>
+          <th>Phone</th>
+          <th>Location</th>
+          <th>Service</th>
+          <th>Car Size</th>
+          <th>Action</th>
+        </tr>
+        ${bookings.map(b => `
+          <tr>
+            <td>${b.fullName}</td>
+            <td>${b.phone}</td>
+            <td>${b.location}</td>
+            <td>${b.service}</td>
+            <td>${b.carSize}</td>
+            <td><button onclick="deleteBooking('${b._id}')">Delete</button></td>
+          </tr>
+        `).join('')}
+      </table>
+    `;
+
+    // Fetch contact messages (optional - same fix here if needed)
   } catch (err) {
-    console.error("Error deleting booking:", err);
-    alert("Error deleting booking.");
+    console.error("Error loading dashboard data:", err);
+    // Optional: Only alert if it's a real failure, or remove this line
+    alert("Error loading dashboard.");
   }
 }
+
