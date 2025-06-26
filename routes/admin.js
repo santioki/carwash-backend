@@ -45,4 +45,18 @@ router.get('/contacts', async (req, res) => {
   }
 });
 
+// DELETE /api/admin/bookings/:id
+router.delete('/bookings/:id', async (req, res) => {
+  try {
+    const booking = await Booking.findByIdAndDelete(req.params.id);
+    if (!booking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+    res.status(200).json({ message: "Booking deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Error deleting booking" });
+  }
+});
+
+
 module.exports = router;
