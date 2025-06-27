@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: [
     "https://www.prowash.it.com",
-    "https://carwash-frontend-xf69.onrender.com"
+    "https://carwash-backend-1-2urg.onrender.com"
   ],
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
