@@ -25,8 +25,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("/*", cors(corsOptions)); // Handle preflight requests
-
-// Middleware
 app.use(express.json());
 
 // API Routes
@@ -34,6 +32,12 @@ app.use('/api/bookings', bookingsRoute);
 app.use('/api/contact', contactRoute);
 app.use('/api/admin', adminRoute);
 
+// ✅ Serve static files (for Google verification & frontend)
+app.use(express.static(path.join(__dirname, '../carwash-frontend/public')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../carwash-frontend/public', 'index.html'));
+});
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
