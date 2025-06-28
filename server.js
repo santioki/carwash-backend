@@ -27,6 +27,19 @@ app.use(cors(corsOptions));
 app.options("/*", cors(corsOptions)); // Handle preflight requests
 app.use(express.json());
 
+
+
+const path = require('path');
+
+// Serve static files from backend/public
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Fallback for SPA or static files (like the Google verification file)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
 // API Routes
 app.use('/api/bookings', bookingsRoute);
 app.use('/api/contact', contactRoute);
