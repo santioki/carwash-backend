@@ -28,11 +28,6 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Specifically serve Google verification file
-app.get('/google308751145a31b33.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'google308751145a31b33.html'));
-});
-
 
 // API Routes
 app.use('/api/bookings', bookingsRoute);
