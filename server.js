@@ -28,6 +28,12 @@ app.use(express.json());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve Google site verification HTML file manually
+app.get('/google3087515145a31b33.html', (req, res) => {
+  res.type('text/plain').send('google-site-verification: google3087515145a31b33.html');
+});
+
+
 
 // API Routes
 app.use('/api/bookings', bookingsRoute);
