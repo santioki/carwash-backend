@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
 require('dotenv').config();
 
 const bookingsRoute = require('./routes/bookings');
@@ -22,40 +21,21 @@ const corsOptions = {
   credentials: true
 };
 
-
 app.use(cors(corsOptions));
-app.options("/*", cors(corsOptions)); // Handle preflight requests
+app.options("/*", cors(corsOptions));
 app.use(express.json());
-
-
-
-
-
-// Serve static files from backend/public
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Fallback for SPA or static files (like the Google verification file)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 
 // API Routes
 app.use('/api/bookings', bookingsRoute);
 app.use('/api/contact', contactRoute);
 app.use('/api/admin', adminRoute);
 
-
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
