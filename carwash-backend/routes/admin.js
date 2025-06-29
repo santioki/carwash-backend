@@ -48,7 +48,7 @@ router.get('/contacts', async (req, res) => {
 // DELETE /api/admin/bookings/:id
 router.delete('/bookings/:id', async (req, res) => {
   try {
-    const contact = await Contact.findOneAndDelete({ _id: req.params.id });
+    const booking = await Booking.findByIdAndDelete(req.params.id); // ✅ correct model
     if (!booking) {
       return res.status(404).json({ error: "Booking not found" });
     }
@@ -57,6 +57,7 @@ router.delete('/bookings/:id', async (req, res) => {
     res.status(500).json({ error: "Error deleting booking" });
   }
 });
+
 
 
 // DELETE /api/admin/contacts/:id
