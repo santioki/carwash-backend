@@ -48,7 +48,7 @@ router.get('/contacts', async (req, res) => {
 // DELETE /api/admin/bookings/:id
 router.delete('/bookings/:id', async (req, res) => {
   try {
-    const booking = await Booking.findByIdAndDelete(req.params.id);
+    const contact = await Contact.findOneAndDelete({ _id: req.params.id });
     if (!booking) {
       return res.status(404).json({ error: "Booking not found" });
     }
@@ -62,15 +62,21 @@ router.delete('/bookings/:id', async (req, res) => {
 // DELETE /api/admin/contacts/:id
 router.delete('/contacts/:id', async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndDelete(req.params.id);
+    console.log("Attempting to delete contact:", req.params.id);
+
+    const contact = await Contact.findOneAndDelete({ _id: req.params.id });
+
     if (!contact) {
+      console.log("Contact not found.");
       return res.status(404).json({ error: "Contact message not found" });
     }
+
+    console.log("Contact deleted.");
     res.status(200).json({ message: "Contact deleted successfully" });
   } catch (err) {
+    console.error("Error deleting contact:", err);
     res.status(500).json({ error: "Error deleting contact message" });
   }
 });
-
 
 module.exports = router;
