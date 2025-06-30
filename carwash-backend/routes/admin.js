@@ -66,7 +66,8 @@ router.delete('/bookings/:id', async (req, res) => {
 
 router.delete('/contacts/:id', async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndDelete(mongoose.Types.ObjectId(req.params.id));
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+
 
 
     if (!contact) {
