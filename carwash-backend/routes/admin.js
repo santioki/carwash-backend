@@ -38,7 +38,8 @@ router.get('/bookings', async (req, res) => {
 // GET /api/admin/contacts
 router.get('/contacts', async (req, res) => {
   try {
-    const contacts = await Contact.find();
+    const contact = await Contact.findByIdAndDelete(req.params.id);
+
     res.json(contacts);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch contacts" });
