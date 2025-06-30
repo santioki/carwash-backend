@@ -36,16 +36,18 @@ router.get('/bookings', async (req, res) => {
   }
 });
 
+
 // GET /api/admin/contacts
 router.get('/contacts', async (req, res) => {
   try {
-    const contact = await Contact.findByIdAndDelete(req.params.id);
-
+    const contacts = await Contact.find(); // ✅ fetch all
     res.json(contacts);
   } catch (err) {
+    console.error("Error fetching contacts:", err);
     res.status(500).json({ error: "Failed to fetch contacts" });
   }
 });
+
 
 // DELETE /api/admin/bookings/:id
 router.delete('/bookings/:id', async (req, res) => {
