@@ -3,17 +3,17 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://www.prowash.it/</loc>
+    <loc>https://www.prowash.it.com/</loc>
     <priority>1.00</priority>
   </url>
 
   <url>
-    <loc>https://www.prowash.it/contact.html</loc>
+    <loc>https://www.prowash.it.com/contact.html</loc>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://www.prowash.it/dashboard.html</loc>
+    <loc>https://www.prowash.it.com/dashboard.html</loc>
     <priority>0.70</priority>
   </url>
 
