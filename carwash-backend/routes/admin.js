@@ -1,4 +1,5 @@
 require('dotenv').config(); // add this at the top if not already present
+const mongoose = require('mongoose');
 
 const express = require('express');
 const router = express.Router();
@@ -62,18 +63,16 @@ router.delete('/bookings/:id', async (req, res) => {
 
 
 // DELETE /api/admin/contacts/:id
+
 router.delete('/contacts/:id', async (req, res) => {
   try {
-    console.log("Attempting to delete contact:", req.params.id);
+    const contact = await Contact.findByIdAndDelete(mongoose.Types.ObjectId(req.params.id));
 
-    const contact = await Contact.findOneAndDelete({ _id: req.params.id });
 
     if (!contact) {
-      console.log("Contact not found.");
       return res.status(404).json({ error: "Contact message not found" });
     }
 
-    console.log("Contact deleted.");
     res.status(200).json({ message: "Contact deleted successfully" });
   } catch (err) {
     console.error("Error deleting contact:", err);
